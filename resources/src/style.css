@@ -1,0 +1,228 @@
+:root
+{
+    --mainColor: rgb(122, 82, 148);
+    --secondaryColor: rgb(196, 107, 204);
+
+    --mainTextColor: #FFF;
+    --secondaryTextColor: #EFE;
+
+    --mainBackground: #151515;
+}
+
+::-webkit-scrollbar {
+    width: 17px;
+    height: 17px;
+}
+
+*
+{
+    font-family:Consolas;
+    margin: 0;
+}
+
+body
+{
+    background: var(--mainBackground);
+    color: white;
+}
+
+nav
+{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    background-color: #1f1f1f;
+}
+
+button
+{
+    transition: 150ms ease-in-out;
+
+    font-weight: bolder;
+    border: none;
+    border-radius: 15px;
+    background-color: var(--mainColor);
+    padding: 10px;
+    color: var(--mainTextColor);
+
+    cursor: pointer;
+}
+
+button:hover
+{
+    background-color: var(--secondaryColor);
+    color: var(--secondaryTextColor);
+}
+
+button:active
+{
+    transition: none;
+    color: var(--secondaryColor);
+    background-color: var(--secondaryTextColor);
+}
+
+input, textarea
+{
+    border: 3px solid var(--mainColor);
+    background-color: #050505;
+    color: #FFF;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+label
+{
+    color: var(--mainTextColor);
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.MessageObj
+{
+    padding: 15px;
+    width: 85%;
+    height: auto;
+    margin: 0 auto 15px auto;
+    border: 2px solid var(--mainColor);
+    border-radius: 15px;
+    text-align: left;
+}
+
+#HostMessage
+{
+    font-size: large;
+    border: 2px solid var(--secondaryColor);
+    text-align: center;
+    padding: 0;
+}
+
+#HostMessage .username
+{
+    display: none;
+}
+
+.MessageObj .username
+{
+    color: var(--mainColor);
+    margin: 0 0 15px 0;
+}
+
+.MessageObj .message 
+{
+    overflow-x: auto;
+    /* overflow-wrap: normal;  Zapobiega zawijaniu tekstu */
+    white-space: pre;
+    background-color: #252525;
+    padding: 20px;
+    border-radius: 25px;
+    /* font-family: monospace; */
+    color: #eee;
+}
+
+nav button 
+{
+    min-width: 25%;
+    /* height: 30px; */
+    margin: 0 10px 0 10px;
+}
+
+main
+{
+    display: flex;
+    flex-direction: column;
+    background-color: #151515;
+    width: 100%;
+    height: auto;
+    margin: 0 auto 25px auto
+}
+
+#chatInput
+{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    flex: 1;
+}
+
+#chatInput input
+{
+    width: 60%;
+}
+
+#chatContainer
+{
+    text-align: center;
+
+    background-color: #1f1f1f;
+    width: 85%;
+    height: 500px;
+    margin: auto;
+    padding: 25px 0 25px 0;
+
+    overflow-y: auto;
+}
+
+#chatContainer::-webkit-scrollbar
+{
+    width: 10px;
+    background-color: #1f1f1f;
+}
+
+#chatContainer::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 6px;
+    border: 4px solid rgba(0,0,0,0);
+    background-clip: content-box;
+    min-width: 32px;
+    min-height: 32px;
+}
+
+#chatContainer h1
+{
+    margin: 0 0 25px 0;
+    color: #353535;
+}
+
+.keyword {
+    color: #FF4530;
+}
+
+.number {
+    color: #00FF00;
+}
+
+.string {
+    color: #1E90FF;
+}
+
+#main_chat
+{
+    display: flex;
+}
+
+#main_userPrefs
+{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+.prefOption
+{
+    width: 60%;
+    background-color: #1f1f1f;
+    padding: 15px;
+}
+
+.prefOption input
+{
+    width: 85%;
+    text-align: center;
+}
+
+#main_files
+{
+    display: none;
+}

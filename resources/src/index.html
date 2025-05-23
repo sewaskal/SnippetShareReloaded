@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snippet Share Reloaded</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.25.0/prism.min.js"></script> -->
+</head>
+<body>
+    <nav>
+        <button onclick="SetMenu(0)">Main Chat</button>
+        <button onclick="SetMenu(1)">User</button>
+        <button onclick="SetMenu(2)">Files</button>
+
+    </nav>
+    <main id="main_chat">
+        <section id="chatContainer">
+            <h1>Nie ma nic więcej :(</h1>
+            <!-- <div class="MessageObj">
+                <p class="username">Name</p>
+                <p class="message">DupaDupa5</p>
+            </div> -->
+        </section>
+
+        <section id="chatInput">
+            <textarea placeholder="Write your message here..." cols="50" rows="5"></textarea><br>
+            <button onclick="SendMessage()">Send</button>
+        </section>
+
+        <p id="output"></p>
+    </main>
+
+    <main id="main_userPrefs">
+        <section class="prefOption">
+            <label for="username_input">Nazwa użytkownika</label> <br>
+            <input type="text" id="username_input" maxlength="40" placeholder="Jane Doe 5" onchange="ChangeUsername()"> <br>
+        </section>
+
+        <section class="prefOption">
+            <label for="username_input">PORT (nie działa sadge)</label> <br>
+            <input type="text" id="username_input" maxlength="4" placeholder="0000"> <br>
+        </section>
+        
+    </main>
+
+    <main id="main_files">
+
+    </main>
+
+    <!-- <script>
+      document.getElementById('output').innerText = window.testAPI.hello();
+    </script> -->
+
+    <script src="renderer.js"></script>
+    <script>
+        let menu = [
+            document.querySelector("#main_chat"),
+            document.querySelector("#main_userPrefs"),
+            document.querySelector("#main_files")
+        ]
+
+        function SetMenu(index)
+        {
+            menu.forEach(element => {
+                element.style.display = 'none';
+            });
+
+            menu[index].style.display = 'flex';
+        }
+    </script>
+</body>
+</html>
