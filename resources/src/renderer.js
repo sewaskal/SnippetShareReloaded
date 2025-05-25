@@ -29,7 +29,7 @@ class Message {
 
 
         username_text.textContent = this.author;
-        message_text.innerHTML = this.message;
+        message_text.textContent = this.message;
 
         if (this.author === "[HOST]")
         {
@@ -47,6 +47,7 @@ class Message {
 function ChangeUsername()
 {
     current_username = document.querySelector("#username_input").value;
+    window.electronAPI.saveUsername();
 
     if (current_username == "[HOST]")
     {

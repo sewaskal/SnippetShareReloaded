@@ -1,13 +1,12 @@
-const { app, BrowserWindow, ipcMain, Notification } = require('electron');
+const { app, BrowserWindow, ipcMain, Notification, dialog } = require('electron');
 const path = require('path');
+const config = require("../config.json");
 const WebSocket = require('ws');
-const { GenerateUsername } = require('./client');
-const username = GenerateUsername();
+const { GetUsername, SaveUsername } = require('./client');
+const username = GetUsername();
+const fs = require('fs');
 
-var PORT = 3035;
-
-const ws = new WebSocket(`ws://localhost:${PORT}`);
-
+var PORT = config.port;
 
 class Message 
 {
@@ -17,11 +16,9 @@ class Message
         this.message = message;
     }
 }
+const ws = new WebSocket(`ws://localhost:${PORT}`);
 
-// let all_messages = [
-//     new Message("User2137", "HAHAHAHAHAHAHAHAHAHAHA"),
-//     new Message("User0000", "kretyn"),
-// ];
+
 
 let mainWindow;
 const CreateWindow = () => {
@@ -46,8 +43,14 @@ const CreateWindow = () => {
 };
 
 app.whenReady().then(CreateWindow);
+
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit();
+});
+
+ws.on('error', () => {
+    dialog.showErrorBox("Błąd serwera", "Nie można połączyć się z serwerem. Sprawdź czy serwer działa oraz port serwera i klienta się zgadzają");
+    app.quit();
 });
 
 ipcMain.handle('get-messages', () => {
@@ -64,6 +67,10 @@ ipcMain.handle('get-messages', () => {
     });
 });
 
+ipcMain.on('save-username', (event, username) => {
+    SaveUsername(username);
+});
+
 // ipcMain.on('new-message', (event, msg) => {
 //     console.log("new message!");
 //     // all_messages.push(message);
@@ -76,8 +83,11 @@ ipcMain.on('new-message', (event, msg) => {
     ws.send(JSON.stringify({ type: 'new-message', data: msg }));
 });
 
-ws.on('message', (d) => {
+ws.on('open', () => {
+    console.log(`Connected to server! Port: ${PORT}`)
+});
 
+ws.on('message', (d) => {
     const json = JSON.parse(d);
     if (json.type == "new-message")
     {

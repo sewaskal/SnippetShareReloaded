@@ -1,18 +1,19 @@
 :root
 {
-    --mainColor: rgb(122, 82, 148);
-    --secondaryColor: rgb(196, 107, 204);
+    --mainColor: rgb(170, 119, 204);
+    --secondaryColor: #d3c75b;
 
     --mainTextColor: #FFF;
+    --usernameTextColor: #d3c75b;
     --secondaryTextColor: #EFE;
 
     --mainBackground: #151515;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 17px;
     height: 17px;
-}
+} */
 
 *
 {
@@ -65,7 +66,7 @@ button:active
 
 input, textarea
 {
-    border: 3px solid var(--mainColor);
+    border: 1px solid var(--mainColor);
     background-color: #050505;
     color: #FFF;
     padding: 10px;
@@ -85,7 +86,7 @@ label
     width: 85%;
     height: auto;
     margin: 0 auto 15px auto;
-    border: 2px solid var(--mainColor);
+    /* border: 2px dotted var(--mainColor); */
     border-radius: 15px;
     text-align: left;
 }
@@ -105,7 +106,9 @@ label
 
 .MessageObj .username
 {
-    color: var(--mainColor);
+    color: var(--usernameTextColor);
+    border-left: 2px solid var(--usernameTextColor);
+    padding-left: 10px;
     margin: 0 0 15px 0;
 }
 
@@ -148,7 +151,7 @@ main
 
 #chatInput input
 {
-    width: 60%;
+    width: 80%;
 }
 
 #chatContainer

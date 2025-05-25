@@ -1,12 +1,11 @@
 const WebSocket = require('ws');
 const express = require('express');
 const http = require('http');
-
+const config = require("../config.json");
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
 
-const PORT = 3035;
-
+var PORT = config.port;
 
 class Message 
 {
@@ -19,11 +18,10 @@ class Message
 
 let messages = [];
 
-
 wss.on('connection', (ws) => {
     console.log('Nowe połączenie');
 
-    let enter_message = new Message("[HOST]", "NOWE POŁĄCZENIE");
+    let enter_message = new Message("[HOST]", "UŻYTKOWNIK SIĘ POŁĄCZYŁ");
     messages.push(enter_message);
 
     wss.clients.forEach(client => {
@@ -32,7 +30,7 @@ wss.on('connection', (ws) => {
         }
     });
 
-    // ws.send(JSON.stringify({ type: 'init', messages }));
+    ws.send(JSON.stringify({ type: 'init', messages }));
 
     ws.on('message', (data) => {
         const msg = JSON.parse(data);
@@ -49,16 +47,15 @@ wss.on('connection', (ws) => {
             wss.clients.forEach(client => {
                 if (client.readyState === WebSocket.OPEN) {
                     client.send(JSON.stringify({ type: 'new-message', data: msg.data }));
-                    // window.location.reload();
                 }
             });
         }
     });
 
-    // Obsługuje zamknięcie połączenia
     ws.on('close', () => {
         console.log('Połączenie zamknięte');
-        let quit_message = new Message("[HOST]", "POŁĄCZENIE ZAMKNIĘTE");
+
+        let quit_message = new Message("[HOST]", "UŻYTKOWNIK SIĘ ROZŁĄCZYŁ");
         messages.push(quit_message);
 
         wss.clients.forEach(client => {
