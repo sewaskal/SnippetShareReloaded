@@ -28,17 +28,22 @@
 <body>
     <nav>
         <button onclick="SetMenu(0)">Czat Główny</button>
-        <button onclick="SetMenu(1)">Preferencje</button>
+        <!-- <button onclick="SetMenu(1)">Preferencje</button> -->
         <button onclick="SetMenu(2)">Tablica kodu</button>
 
     </nav>
     <main id="main_chat">
         <section id="chatContainer">
-            <h1>Nie ma nic więcej :(</h1>
-            <!-- <div class="MessageObj">
-                <p class="username">Name</p>
-                <p class="message">DupaDupa5</p>
-            </div> -->
+            <section id="msgContainer">
+                <h1>Nie ma nic więcej :(</h1>
+                <!-- <div class="MessageObj">
+                    
+                    <p class="username">Name <button class="copyBtn">Kopiuj</button></p>
+                    <p class="message">DupaDupa5</p>
+                </div> -->
+
+            </section>
+            
         </section>
 
         <section id="chatInput">
@@ -51,7 +56,6 @@
 
     <main id="main_userPrefs">
         <h2>Pusto :P</h2>
-        
     </main>
 
     <main id="main_files">

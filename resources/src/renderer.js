@@ -15,26 +15,40 @@ class Message {
         this.message = message;
     }
 
+    CopyMessage(msg)
+    {
+        navigator.clipboard.writeText(msg);
+    }
+
     CreateMessage()
     {
-        const chat = document.querySelector("#chatContainer");
+        const chat = document.querySelector("#msgContainer");
 
         var container = document.createElement('div');
         var username_text = document.createElement('p');
         var message_text = document.createElement('p');
+        var copy_button = document.createElement('button');
 
         container.className = "MessageObj";
         username_text.className = 'username';
         message_text.className = 'message';
+        copy_button.className = "copyBtn";
 
 
         username_text.textContent = this.author;
         message_text.textContent = this.message;
+        copy_button.textContent = "Kopiuj";
+
+        copy_button.addEventListener('click', () => {
+            CopyMessage(this.message);
+        });
 
         if (this.author === "[HOST]")
         {
             container.id = "HostMessage";
         }
+
+        // username_text.appendChild(copy_button);
 
         container.appendChild(username_text);
         container.appendChild(message_text);

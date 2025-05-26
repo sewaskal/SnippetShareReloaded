@@ -24,8 +24,8 @@ const ws = new WebSocket(`ws://${HOST}:${PORT}`);
 let mainWindow;
 const CreateWindow = () => {
     mainWindow = new BrowserWindow({
-        width: 600,
-        height: 850,
+        width: 700,
+        height: 950,
         icon: __dirname + './src/img/icon.ico',
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
