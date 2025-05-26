@@ -2,6 +2,7 @@ const WebSocket = require('ws');
 const express = require('express');
 const http = require('http');
 const config = require("../config.json");
+
 const server = http.createServer();
 const wss = new WebSocket.Server({ server });
 

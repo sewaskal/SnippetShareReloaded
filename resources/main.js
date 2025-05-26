@@ -6,6 +6,7 @@ const { GetUsername, SaveUsername } = require('./client');
 const username = GetUsername();
 const fs = require('fs');
 
+var HOST = config.host;
 var PORT = config.port;
 
 class Message 
@@ -16,7 +17,7 @@ class Message
         this.message = message;
     }
 }
-const ws = new WebSocket(`ws://localhost:${PORT}`);
+const ws = new WebSocket(`ws://${HOST}:${PORT}`);
 
 
 
@@ -84,7 +85,7 @@ ipcMain.on('new-message', (event, msg) => {
 });
 
 ws.on('open', () => {
-    console.log(`Connected to server! Port: ${PORT}`)
+    console.log(`Connected to server ${HOST}! Port: ${PORT}`)
 });
 
 ws.on('message', (d) => {
